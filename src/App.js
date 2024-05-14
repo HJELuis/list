@@ -1,20 +1,22 @@
+import { useState } from "react";
+import FilteredList from "./FilterList/filteredList";
+import SearchBox from "./SearchBox/searchBox";
 
 function App() {
+  const [appState, updateState] = useState({
+    elements: [],
+    searchedText: "",
+  });
+
+  const change = (event) => {
+    console.log(event);
+    /* updateState({...appState, }) */
+  }
+
   return (
     <div className="App">
-      <header className="App-header">       
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SearchBox handleChange={change}/>
+      <FilteredList elements={appState.elements} searchedElement={appState.searchedText}/>
     </div>
   );
 }
