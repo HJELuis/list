@@ -2,14 +2,14 @@ import React from "react";
 
 const FilteredList = ({elements, searchedElement}) => {
     
-    const findElements = elements.filter(element =>  element === searchedElement)  
+    const findElements = elements.filter(element =>  element.name === searchedElement)  
     
     return (
         <>
             <section>                
                 <ul>
                 {
-                    findElements.map(element => <li>element</li>)
+                    findElements.map(element => <li key={element.id}>{element.id} {element.name}</li>)
                 }                                             
                 </ul>                               
             </section>

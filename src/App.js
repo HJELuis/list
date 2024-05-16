@@ -1,22 +1,40 @@
-import { useState } from "react";
-import FilteredList from "./FilterList/filteredList";
-import SearchBox from "./SearchBox/searchBox";
+import React, { useEffect, useState } from "react";
+import FilteredList from "./FilterList";
+import SearchBox from "./SearchBox";
+import "./styles/style.css"
 
 function App() {
-  const [appState, updateState] = useState({
-    elements: [],
+  const [list, setList] = useState({
+    elements: [
+
+      {id:1, name:"Luis"},
+      {id:2, name:"Enrique"},
+      {id:3, name:"Emilio"},
+      {id:4, name:"Luis"},
+      {id:5, name:"Enrique"},
+      {id:6, name:"Emilio"},
+    ],
     searchedText: "",
   });
-
-  const change = (event) => {
-    console.log(event);
-    /* updateState({...appState, }) */
+  
+  const changeText = (event) => {    
+    setList(prev => ({...prev, [event.target.id]:event.target.value}));    
   }
 
   return (
     <div className="App">
-      <SearchBox handleChange={change}/>
-      <FilteredList elements={appState.elements} searchedElement={appState.searchedText}/>
+      <section>
+        <h1>Lista de nombres</h1>
+        <ol>
+          {
+            list.elements.map(element => (
+              <li key={element.id}>{element.name}</li>
+            ))
+          }
+        </ol>
+      </section>
+      <SearchBox handleChange={changeText}/>
+      <FilteredList elements={list.elements} searchedElement={list.searchedText}/>
     </div>
   );
 }
