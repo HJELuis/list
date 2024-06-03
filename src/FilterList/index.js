@@ -2,7 +2,7 @@ import React from "react";
 
 const FilteredList = ({elements, searchedElement}) => {
     
-    const findElements = elements.filter(element =>  element.name === searchedElement)  
+    const findElements = elements.filter(element =>  searchedElement === "" ? "" : element.name.includes(searchedElement));
     
     return (
         <>

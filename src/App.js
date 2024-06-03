@@ -13,12 +13,12 @@ function App() {
       {id:4, name:"Luis"},
       {id:5, name:"Enrique"},
       {id:6, name:"Emilio"},
-    ],
-    searchedText: "",
-  });
+    ]});
+
+  const [text, setText] = useState("");
   
   const changeText = (event) => {    
-    setList(prev => ({...prev, [event.target.id]:event.target.value}));    
+    setText(event.target.value);
   }
 
   return (
@@ -34,7 +34,7 @@ function App() {
         </ol>
       </section>
       <SearchBox handleChange={changeText}/>
-      <FilteredList elements={list.elements} searchedElement={list.searchedText}/>
+      <FilteredList elements={list.elements} searchedElement={text}/>
     </div>
   );
 }
